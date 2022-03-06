@@ -40,7 +40,7 @@
             android:layout_height="65dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/duongvien_xanh"
-            android:text="Xem danh sách tài khoản"
+            android:text="View a list of accounts"
             android:textSize="20sp"
             android:textAllCaps="false"/>
 
@@ -65,7 +65,7 @@
             android:layout_height="65dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/duongvien_xanh"
-            android:text="Xóa tài khoản Quán ăn"
+            android:text="Delete restaurant account"
             android:textSize="20sp"
             android:textAllCaps="false"/>
 

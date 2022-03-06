@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/size10dp"
-        android:text="Cập nhật món ăn"
+        android:text="Update dishes"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         android:textStyle="bold"/>
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:hint="Tên món"
+        android:hint="Name of dish"
         android:text=""
         android:layout_marginLeft="15dp"
         android:layout_marginRight="@dimen/size15dp"
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
-        android:hint="Giá món"
+        android:hint="Item price"
         android:text=""
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -87,7 +87,7 @@
                 android:id="@+id/conhang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Còn hàng"
+                android:text="Stocking"
                 android:textSize="22sp"/>
             <RadioButton
                 android:textColor="@color/colorPrimary"
@@ -95,7 +95,7 @@
                 android:id="@+id/hethang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hết hàng"
+                android:text="Out of stock"
                 android:textSize="22sp"/>
         </RadioGroup>
 
@@ -113,7 +113,7 @@
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:background="#43A047"
-            android:text="Cập nhật"
+            android:text="Update"
             android:textSize="15sp"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite"/>
@@ -124,7 +124,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="30dp"
             android:background="#FF9100"
-            android:text="Đóng"
+            android:text="Close"
             android:textSize="15sp"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite"/>

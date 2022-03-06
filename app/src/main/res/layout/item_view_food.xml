@@ -62,7 +62,7 @@
                     android:id="@+id/item_food_price_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="giá"/>
+                    android:text="price"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/item_food_status_view"

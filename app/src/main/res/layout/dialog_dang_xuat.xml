@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/size10dp"
-        android:text="Thông báo"
+        android:text="Notification"
         android:textColor="#FF9100"
         android:textSize="17sp" />
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:paddingLeft="@dimen/size10dp"
-        android:text="Bạn thực sự muốn đăng xuất."
+        android:text="You really want to log out."
         android:textColor="@color/colorBlack"
         android:textSize="18sp" />
     <TextView
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="#43A047"
-            android:text="Không"
+            android:text="No"
             android:textColor="@color/colorWhite"
             android:textSize="15sp"
             android:textAllCaps="false"/>
@@ -67,7 +67,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="30dp"
             android:background="#FF9100"
-            android:text="Có"
+            android:text="Yes"
             android:textColor="@color/colorWhite"
             android:textSize="15sp"
             android:textAllCaps="false"/>

@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thêm tài khoản Quán"
+        android:text="Add a restaurant Account"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
         android:textColor="@color/colorPrimary"
@@ -47,7 +47,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu"
+            android:hint="Password"
             android:textColorHint="#FAF8F8"
             android:id="@+id/edtPassQuan"
             android:textColor="@color/colorPrimary"
@@ -64,7 +64,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên quán"
+            android:hint="Name of the shop"
             android:textColorHint="#FAF8F8"
             android:id="@+id/edtTenQuan"
             android:textColor="@color/colorPrimary"
@@ -80,7 +80,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Số điện thoại"
+            android:hint="Phone number"
             android:textColorHint="#FAF8F8"
             android:id="@+id/edtPhoneQuan"
             android:textColor="@color/colorPrimary"
@@ -98,7 +98,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Địa chỉ"
+            android:hint="Address"
             android:textColorHint="#FAF8F8"
             android:id="@+id/edtAddressQuan"
             android:textColor="@color/colorPrimary"
@@ -125,7 +125,7 @@
                 android:layout_margin="@dimen/size10dp"
                 android:layout_weight="1"
                 android:background="@drawable/duongvien_xanh"
-                android:text="Thêm"
+                android:text="More"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:textAllCaps="false"/>

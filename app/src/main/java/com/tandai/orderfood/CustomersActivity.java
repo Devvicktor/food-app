@@ -494,7 +494,7 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
                     //delete remember user and password
                     Paper.book().destroy();
 
-                    startActivity(new Intent(KhachHangActivity.this,WelcomActivity.class));
+                    startActivity(new Intent(KhachHangActivity.this,WelcomeActivity.class));
                 }
             });
         }

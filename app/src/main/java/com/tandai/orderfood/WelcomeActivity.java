@@ -1,6 +1,5 @@
 package com.tandai.orderfood;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -44,7 +43,7 @@ import io.paperdb.Paper;
 import static java.lang.Thread.sleep;
 
 
-public class WelcomActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
     Button btnLog;
     Button btnReg;
     DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
@@ -64,7 +63,7 @@ public class WelcomActivity extends AppCompatActivity {
 
         printKeyHash();
 
-        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Vui lòng đợi...").setCancelable(false).build();
+        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Please wait...").setCancelable(false).build();
 
         //Anh xa
         btnLog = (Button) findViewById(R.id.btnLoginWelcom);
@@ -73,13 +72,13 @@ public class WelcomActivity extends AppCompatActivity {
         btnLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WelcomActivity.this, LoginActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
             }
         });
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WelcomActivity.this, RegisterActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
             }
         });
 
@@ -88,9 +87,9 @@ public class WelcomActivity extends AppCompatActivity {
         Paper.init(this);
 
 
-        //kiểm tra kết nối
+        //Checking internet connection
         if(isNetworkAvailable()){
-            Xuli();
+            Select();
         }
         else {
             final Dialog dialog   = new Dialog(this,R.style.Theme_Dialog);
@@ -121,7 +120,7 @@ public class WelcomActivity extends AppCompatActivity {
                     startDelay = new Runnable() {
                         @Override
                         public void run() {
-                            Xuli();
+                            Select();
                         }
                     };
                     setDelay.postDelayed(startDelay,3000);
@@ -155,7 +154,7 @@ public class WelcomActivity extends AppCompatActivity {
     }
 
 
-    // kiểm tra kết nối internet
+    // check internet connectivity
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -163,7 +162,7 @@ public class WelcomActivity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    private void Xuli(){
+    private void Select(){
         String user = Paper.book().read(Common.USER_KEY);
         String pass = Paper.book().read(Common.PWD_KEY);
 
@@ -178,7 +177,7 @@ public class WelcomActivity extends AppCompatActivity {
         if (isNetworkAvailable()) {
             waiting.show();
             if (email.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin. ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please enter full information. ", Toast.LENGTH_SHORT).show();
             } else {
                 mAuthencation.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -197,15 +196,15 @@ public class WelcomActivity extends AppCompatActivity {
                                     User user = dataSnapshot.getValue(User.class);
 
                                     if (user.getUserType().equals("admin")) {
-                                        startActivity(new Intent(WelcomActivity.this, AdminActivity.class));
-                                    } else if (user.getUserType().equals("restaurent")) {
-                                        startActivity(new Intent(WelcomActivity.this, RestaurantActivity.class));
+                                        startActivity(new Intent(WelcomeActivity.this, AdminActivity.class));
+                                    } else if (user.getUserType().equals("restaurant")) {
+                                        startActivity(new Intent(WelcomeActivity.this, RestaurantActivity.class));
                                     } else if (user.getUserType().equals("customer")) {
 
                                         if (USER.isEmailVerified()) {
-                                            startActivity(new Intent(WelcomActivity.this, KhachHangActivity.class));
+                                            startActivity(new Intent(WelcomeActivity.this, CustomersActivity.class));
                                         } else {
-                                            Toast.makeText(WelcomActivity.this, "Vui lòng xác thực Email để đăng nhập", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(WelcomeActivity.this, "Please verify your Email to login", Toast.LENGTH_SHORT).show();
                                         }
 
                                     }
@@ -219,14 +218,14 @@ public class WelcomActivity extends AppCompatActivity {
 
                         } else {
                             waiting.dismiss();
-                            Toast.makeText(WelcomActivity.this, "Tài khoản hoặc mật khẩu không hợp lệ.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WelcomeActivity.this, "Invalid account or password.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
         }
         else{
-            Toast.makeText(this, "Bạn chưa kết nối Internet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You are not connected to the Internet", Toast.LENGTH_SHORT).show();
         }
     }
 

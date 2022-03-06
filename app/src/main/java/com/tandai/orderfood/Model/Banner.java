@@ -1,14 +1,14 @@
 package com.tandai.orderfood.Model;
 
 public class Banner {
-    private String id,idQuan,image;
+    private String id, idCountry,image;
 
     public Banner() {
     }
 
-    public Banner(String id, String idQuan, String image) {
+    public Banner(String id, String idCountry, String image) {
         this.id = id;
-        this.idQuan = idQuan;
+        this.idCountry = idCountry;
         this.image = image;
     }
 
@@ -20,12 +20,12 @@ public class Banner {
         this.id = id;
     }
 
-    public String getIdQuan() {
-        return idQuan;
+    public String getIdCountry() {
+        return idCountry;
     }
 
-    public void setIdQuan(String idQuan) {
-        this.idQuan = idQuan;
+    public void setIdCountry(String idCountry) {
+        this.idCountry = idCountry;
     }
 
     public String getImage() {

@@ -23,29 +23,30 @@
         android:textSize="50sp"
         android:textStyle="bold"
        android:fontFamily="@font/nabila"/>
+
     <TextView
-        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/nabila"
+        android:gravity="center"
         android:orientation="vertical"
-        android:text="Chào mừng bạn đến với ứng dụng đặt món ăn."
+        android:text="Welcome to the food ordering app."
         android:textColor="@color/colorWhite"
         android:textSize="25sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/nabila"
-        android:layout_marginTop="120dp"
-        android:layout_marginLeft="20dp"/>
+        android:textStyle="bold" />
 
     <Button
-        android:gravity="center"
         android:id="@+id/btnLoginWelcom"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="270dp"
         android:background="@drawable/duongvien_xanh"
-        android:text="@string/dangnhap"
+        android:gravity="center"
+        android:text="Log in"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/size20dp" />
 
@@ -56,7 +57,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="340dp"
         android:background="@drawable/duongvien_trang"
-        android:text="@string/dangky"
+        android:text="Register"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/size20dp" />
 

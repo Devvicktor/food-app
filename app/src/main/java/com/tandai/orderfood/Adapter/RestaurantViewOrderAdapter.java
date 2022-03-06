@@ -14,13 +14,13 @@ import com.tandai.orderfood.R;
 
 import java.util.List;
 
-public class RestaurentViewOrderAdapter extends BaseAdapter {
+public class RestaurantViewOrderAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
     private List<Order> listOrder;
 
-    public RestaurentViewOrderAdapter(Context context, int layout, List<Order> listOrder) {
+    public RestaurantViewOrderAdapter(Context context, int layout, List<Order> listOrder) {
         this.context = context;
         this.layout = layout;
         this.listOrder = listOrder;

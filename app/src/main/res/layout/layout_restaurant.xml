@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Quán ăn"
+        android:text="Restaurant"
         android:textColor="@color/colorWhite"
         android:textSize="28sp"
         android:layout_marginTop="15dp"
@@ -41,7 +41,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/duongvien_xanh"
-            android:text="Danh sách món ăn"
+            android:text="List of dishes"
             android:textSize="20sp"
             android:textAllCaps="false"/>
 
@@ -53,7 +53,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/duongvien_xanh"
-            android:text="Thêm món ăn"
+            android:text="More dishes"
             android:textSize="20sp"
             android:textAllCaps="false"/>
 
@@ -65,7 +65,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/duongvien_xanh"
-            android:text="Các đơn đặt hàng"
+            android:text="Orders"
             android:textSize="20sp"
             android:textAllCaps="false"/>
 
@@ -77,7 +77,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/duongvien_xanh"
-            android:text="Cập nhật thông tin"
+            android:text="Update information"
             android:textSize="20sp"
             android:textAllCaps="false"/>
 
@@ -89,7 +89,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/duongvien_xanh"
-            android:text="Đổi mật khẩu"
+            android:text="Change Password"
             android:textSize="20sp"
             android:textAllCaps="false"/>
 

@@ -43,19 +43,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         viewHolder.quantity.setText(" - "+order.getSoluong());
         Picasso.with(context).load(order.getLinkAnh()).into(viewHolder.image);
         if(order.getCheck() == 0){
-            viewHolder.status.setText("Chưa xác nhận");
+            viewHolder.status.setText("Unconfimred");
             viewHolder.status.setTextColor(Color.GRAY);
         }
         else if(order.getCheck() == 1){
-            viewHolder.status.setText("Đã giao");
+            viewHolder.status.setText("Delivered");
             viewHolder.status.setTextColor(Color.parseColor("#00C853"));
         }
         else if(order.getCheck() == 2){
-            viewHolder.status.setText("Đang giao");
+            viewHolder.status.setText("Delivering");
             viewHolder.status.setTextColor(Color.BLUE);
         }
         else if(order.getCheck() == 3){
-            viewHolder.status.setText("Hết hàng");
+            viewHolder.status.setText("Out of stock");
             viewHolder.status.setTextColor(Color.RED);
         }
 

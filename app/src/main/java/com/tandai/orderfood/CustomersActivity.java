@@ -52,10 +52,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import io.paperdb.Paper;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class KhachHangActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CustomersActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     TextView ten, tenTK;
     ListView lvFood;
     ArrayList<Food> arrFood;
@@ -150,7 +149,7 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Cart = new Intent(KhachHangActivity.this,CartActivity.class);
+                Intent Cart = new Intent(CustomersActivity.this,CartActivity.class);
                 startActivity(Cart);
             }
         });
@@ -207,7 +206,7 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //position là vi tri tren listview
                 Food food = arrFood.get(position);
-                Intent foodDetail = new Intent(KhachHangActivity.this,FoodDetailActivity.class);
+                Intent foodDetail = new Intent(CustomersActivity.this,FoodDetailActivity.class);
                 //gửi FoodId (ten của Food) và id quán đến activity FoodDetail
                 foodDetail.putExtra("FoodId",food.getTenMon());
                 foodDetail.putExtra("RestaurentID",food.getIDQuan());
@@ -234,7 +233,7 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
                 for(DataSnapshot postSnapShot: dataSnapshot.getChildren()){
                     //i = i+1;
                     Banner banner = postSnapShot.getValue(Banner.class);
-                    image_list.put(banner.getId()+"_"+banner.getIdQuan(),banner.getImage());
+                    image_list.put(banner.getId()+"_"+banner.getIdCountry(),banner.getImage());
 
                 }
                 for(String key:image_list.keySet()){
@@ -251,7 +250,7 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
                             .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
                                 @Override
                                 public void onSliderClick(BaseSliderView slider) {
-                                    Intent intent = new Intent(KhachHangActivity.this,FoodDetailActivity.class);
+                                    Intent intent = new Intent(CustomersActivity.this,FoodDetailActivity.class);
                                     intent.putExtras(textSliderView.getBundle());
                                     startActivity(intent);
                                 }
@@ -381,7 +380,7 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
-            startActivity(new Intent(KhachHangActivity.this,SearchFoodActivity.class));
+            startActivity(new Intent(CustomersActivity.this,SearchFoodActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -393,12 +392,12 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_xemthongtin) {
-            Intent info = new Intent(KhachHangActivity.this,InfoPersonActivity.class);
+            Intent info = new Intent(CustomersActivity.this,InfoPersonActivity.class);
             info.putExtra("userID",userID);//gửi UserID đến activity mới
             startActivity(info);
         }
         else if (id == R.id.nav_timkiem) {
-            startActivity(new Intent(KhachHangActivity.this, SearchFoodActivity.class));
+            startActivity(new Intent(CustomersActivity.this, SearchFoodActivity.class));
         }
         else if (id == R.id.nav_donhang) {
             //get date-time
@@ -427,9 +426,9 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
                         if(check) break;
                     }
                     if (check)
-                        startActivity(new Intent(KhachHangActivity.this, OrderActivity.class));
+                        startActivity(new Intent(CustomersActivity.this, OrderActivity.class));
                     else
-                        Toast.makeText(KhachHangActivity.this, "Chưa có đơn hàng ngày hôm nay.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CustomersActivity.this, "Chưa có đơn hàng ngày hôm nay.", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -441,7 +440,7 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
 
         }
         else if (id == R.id.nav_giohang) {
-            startActivity(new Intent(KhachHangActivity.this, CartActivity.class));
+            startActivity(new Intent(CustomersActivity.this, CartActivity.class));
         }
         else if(id == R.id.nav_fav){
             db.child("Favorite").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -458,9 +457,9 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
                         }
                     }
                     if (check)
-                        startActivity(new Intent(KhachHangActivity.this, FavoriteActivity.class));
+                        startActivity(new Intent(CustomersActivity.this, FavoriteActivity.class));
                     else
-                        Toast.makeText(KhachHangActivity.this, "Chưa có món ăn yêu thích", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CustomersActivity.this, "Chưa có món ăn yêu thích", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -471,11 +470,11 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
 
         }
         else if (id == R.id.nav_doimk) {
-            startActivity(new Intent(KhachHangActivity.this,ChangePassActivity.class));
+            startActivity(new Intent(CustomersActivity.this,ChangePassActivity.class));
         }
         else if(id == R.id.nav_dangxuat) {
             // open dialog
-            final Dialog dialogLogOut = new Dialog(KhachHangActivity.this,R.style.Theme_Dialog);
+            final Dialog dialogLogOut = new Dialog(CustomersActivity.this,R.style.Theme_Dialog);
             dialogLogOut.setContentView(R.layout.dialog_dang_xuat);
             dialogLogOut.show();
 
@@ -494,7 +493,7 @@ public class KhachHangActivity extends AppCompatActivity implements NavigationVi
                     //delete remember user and password
                     Paper.book().destroy();
 
-                    startActivity(new Intent(KhachHangActivity.this,WelcomeActivity.class));
+                    startActivity(new Intent(CustomersActivity.this,WelcomeActivity.class));
                 }
             });
         }

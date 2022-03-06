@@ -7,33 +7,33 @@
         <item
             android:id="@+id/nav_xemthongtin"
             android:icon="@drawable/user1"
-            android:title="Xem thông tin cá nhân"
+            android:title="view personal information"
             />
         <item
             android:id="@+id/nav_timkiem"
             android:icon="@drawable/searchplus"
-            android:title="Tìm kiếm món ăn" />
+            android:title="Looking for food" />
         <item
             android:id="@+id/nav_donhang"
             android:icon="@drawable/donhang"
-            android:title="Xem đơn hàng" />
+            android:title="View orders" />
         <item
             android:id="@+id/nav_giohang"
             android:icon="@drawable/cartplus"
-            android:title="Xem giỏ hàng" />
+            android:title="View Cart" />
         <item
             android:id="@+id/nav_fav"
             android:icon="@drawable/ic_favorite_black_24dp"
-            android:title="Món ăn yêu thích" />
+            android:title="Favorite Food" />
 
         <item
             android:id="@+id/nav_doimk"
             android:icon="@drawable/key"
-            android:title="Đổi mật khẩu" />
+            android:title="Change Password" />
         <item
             android:id="@+id/nav_dangxuat"
             android:icon="@drawable/dangxuat"
-            android:title="Đăng xuất" />
+            android:title="Log out" />
     </group>
 
 

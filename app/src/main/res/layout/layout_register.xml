@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:text="@string/dangky"
+        android:text="Register"
         android:layout_centerHorizontal="true"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -49,7 +49,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu"
+            android:hint="Password"
             android:textColorHint="#FAF8F8"
             android:id="@+id/txtPass"
             android:textColor="@color/colorPrimary"
@@ -66,7 +66,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Họ tên"
+            android:hint="Full Name"
             android:textColorHint="@color/colorPrimary"
             android:id="@+id/txtName"
             android:textColor="@color/colorPrimary"
@@ -82,7 +82,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Số điện thoại"
+            android:hint="Phone Number"
             android:textColorHint="@color/colorPrimary"
             android:id="@+id/txtPhone"
             android:textColor="@color/colorPrimary"
@@ -100,7 +100,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Địa chỉ"
+            android:hint="Address"
             android:textColorHint="@color/colorPrimary"
             android:id="@+id/txtAddress"
             android:textColor="@color/colorWhite"
@@ -132,7 +132,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/duongvien_xanh"
-                android:text="@string/dangky"
+                android:text="Register"
                 android:textColor="@color/colorWhite"
                 android:textAllCaps="false"
                 android:textSize="25sp" />

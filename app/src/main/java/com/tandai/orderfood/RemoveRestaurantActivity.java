@@ -32,7 +32,7 @@ public class RemoveRestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_remove_restaurant);
         AnhXa();
-        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Vui lòng đợi").setCancelable(false).build();
+        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Please wait").setCancelable(false).build();
         xoaQuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,14 +64,14 @@ public class RemoveRestaurantActivity extends AppCompatActivity {
                             database = FirebaseDatabase.getInstance().getReference().child("QuanAn");
                             database.child(userID).setValue(null);
                             waiting.dismiss();
-                            Toast.makeText(RemoveRestaurantActivity.this, "Bạn đã xóa thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RemoveRestaurantActivity.this, "You have successfully deleted", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RemoveRestaurantActivity.this,AdminActivity.class));
                             return;
                         }
                     }
                 }
                 waiting.dismiss();
-                Toast.makeText(RemoveRestaurantActivity.this, "Email quán không tồn tại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RemoveRestaurantActivity.this, "Shop email does not exist", Toast.LENGTH_SHORT).show();
             }
 
             @Override

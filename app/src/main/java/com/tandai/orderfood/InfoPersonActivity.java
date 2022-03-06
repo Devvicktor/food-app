@@ -141,9 +141,9 @@ public class InfoPersonActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     link_image = task.getResult().toString();
                                     mDatabase.child("image").setValue(link_image);
-                                    Toast.makeText(InfoPersonActivity.this, "Thêm ảnh thành công", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(InfoPersonActivity.this, "Successfully added photo", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(InfoPersonActivity.this, "Thêm không thành công", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(InfoPersonActivity.this, "Add failed", Toast.LENGTH_SHORT).show();
                                 }
                                 waiting.dismiss();
                             }
@@ -198,10 +198,10 @@ public class InfoPersonActivity extends AppCompatActivity {
                 final String Address = address.getText().toString();
                 final String Phone = phone.getText().toString();
                 if(Name.isEmpty() || Address.isEmpty() || Phone.isEmpty()){
-                    Toast.makeText(InfoPersonActivity.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InfoPersonActivity.this, "Please complete all information", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(InfoPersonActivity.this, "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InfoPersonActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
                     dialog.cancel();
                     mDatabase.child("name").setValue(Name);
                     mDatabase.child("address").setValue(Address);
@@ -219,7 +219,7 @@ public class InfoPersonActivity extends AppCompatActivity {
         sdt          = findViewById(R.id.tvsdtkhachhang);
         image       = findViewById(R.id.image_person);
         change_image = findViewById(R.id.change_image_person);
-        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Đang upload...").setCancelable(false).build();
+        waiting =  new SpotsDialog.Builder().setContext(this).setMessage(" are upload...").setCancelable(false).build();
     }
 
     private void LoadData(){

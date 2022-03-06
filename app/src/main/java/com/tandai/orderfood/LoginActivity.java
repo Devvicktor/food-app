@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.layout_login);
         AnhXa();
-        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Vui lòng đợi...").setCancelable(false).build();
+        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Please wait...").setCancelable(false).build();
         mAuthencation = FirebaseAuth.getInstance();
 
         Paper.init(this);
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         final String Email = email.getText().toString().trim();
         final String Pass = pass.getText().toString().trim();
         if (Email.isEmpty() || Pass.isEmpty() ) {
-            Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin. ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter full information ", Toast.LENGTH_SHORT).show();
         }
         else {
             if(isNetworkAvailable()) {
@@ -110,14 +110,14 @@ public class LoginActivity extends AppCompatActivity {
 
                                     if (user.getUserType().equals("admin")) {
                                         startActivity(new Intent(LoginActivity.this, AdminActivity.class));
-                                    } else if (user.getUserType().equals("restaurent")) {
+                                    } else if (user.getUserType().equals("restaurant")) {
                                         startActivity(new Intent(LoginActivity.this, RestaurantActivity.class));
                                     } else if (user.getUserType().equals("customer")) {
 
                                         if (USER.isEmailVerified()) {
-                                            startActivity(new Intent(LoginActivity.this, KhachHangActivity.class));
+                                            startActivity(new Intent(LoginActivity.this, CustomersActivity.class));
                                         } else {
-                                            Toast.makeText(LoginActivity.this, "Vui lòng xác thực Email để đăng nhập", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(LoginActivity.this, "Please verify your Email to login ", Toast.LENGTH_SHORT).show();
                                         }
 
                                     }
@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                             });
 
 
-                            // ghi lai mk trong database neu quen mat kau sau khi lay lai
+                            // write me down in the database if you get used to it after laying it out
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
                             ValueEventListener eventListener = new ValueEventListener() {
@@ -148,19 +148,19 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
                             waiting.dismiss();
-                            Toast.makeText(LoginActivity.this, "Tài khoản hoặc mật khẩu không hợp lệ.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Invalid account or password", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
             else{
-                Toast.makeText(this, "Bạn chưa kết nối Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You are not connected to the Internet", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
 
-    // kiểm tra kết nối internet
+    // check internet connection
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

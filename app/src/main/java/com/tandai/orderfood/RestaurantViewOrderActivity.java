@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.tandai.orderfood.Adapter.RestaurentViewOrderAdapter;
+import com.tandai.orderfood.Adapter.RestaurantViewOrderAdapter;
 import com.tandai.orderfood.Model.Order;
 
 import java.text.SimpleDateFormat;
@@ -28,7 +28,7 @@ public class RestaurantViewOrderActivity extends AppCompatActivity {
 
     ListView listOrder;
     ArrayList<Order> arrOrder;
-    RestaurentViewOrderAdapter adapter = null;
+    RestaurantViewOrderAdapter adapter = null;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String userID = user.getUid();
     DatabaseReference mDatabase;
@@ -42,7 +42,7 @@ public class RestaurantViewOrderActivity extends AppCompatActivity {
         btnThoat =(FButton) findViewById(R.id.btnThoatXemdonhangQuanan);
         listOrder  =   (ListView) findViewById(R.id.listRestaurent_viewOrder);
         arrOrder = new ArrayList<>();
-        adapter = new RestaurentViewOrderAdapter(this, R.layout.item_restaurent_view_order, arrOrder);
+        adapter = new RestaurantViewOrderAdapter(this, R.layout.item_restaurent_view_order, arrOrder);
         listOrder.setAdapter(adapter);
         getInfoOrder();
 

@@ -31,7 +31,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Đơn hàng trong ngày"
+            android:text="Orders of the day"
             android:textSize="22sp"
             android:textColor="@color/colorWhite"/>
 

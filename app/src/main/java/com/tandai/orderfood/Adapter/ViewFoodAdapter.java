@@ -47,13 +47,13 @@ public class ViewFoodAdapter extends RecyclerView.Adapter<ViewFoodAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final MonAn monAn = arrMonAn.get(i);
         viewHolder.name.setText(monAn.getTenMon());
-        viewHolder.price.setText(monAn.getGiaMon()+"Đ");
+        viewHolder.price.setText(monAn.getGiaMon()+"D");
         if(monAn.getTinhTrang() == 0){
-            viewHolder.status.setText("Hết hàng");
+            viewHolder.status.setText("Out of stock");
             viewHolder.status.setTextColor(Color.GRAY);
         }
         else {
-            viewHolder.status.setText("Còn hàng");
+            viewHolder.status.setText("Stocking");
         }
         Picasso.with(context).load(monAn.getLinkAnh()).into(viewHolder.image);
 
@@ -84,10 +84,10 @@ public class ViewFoodAdapter extends RecyclerView.Adapter<ViewFoodAdapter.ViewHo
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.setHeaderTitle("Lựa chọn Option");
-            menu.add(this.getAdapterPosition(),121,0,"Xóa món ăn");
-            menu.add(this.getAdapterPosition(),122,1,"Cập nhật món ăn");
-            menu.add(this.getAdapterPosition(),123,2,"Đặt làm Hot Food");
+            menu.setHeaderTitle("Select options");
+            menu.add(this.getAdapterPosition(),121,0,"Delete dishes");
+            menu.add(this.getAdapterPosition(),122,1,"Update dishes");
+            menu.add(this.getAdapterPosition(),123,2,"Order as Hot Food");
         }
     }
 
@@ -95,7 +95,7 @@ public class ViewFoodAdapter extends RecyclerView.Adapter<ViewFoodAdapter.ViewHo
         arrMonAn.remove(position);
         notifyDataSetChanged();
         // remove in database
-        mDatabase = FirebaseDatabase.getInstance().getReference("QuanAn").child(user.getUid()).child(name);
+        mDatabase = FirebaseDatabase.getInstance().getReference("restaurant").child(user.getUid()).child(name);
         mDatabase.setValue(null);
     }
 

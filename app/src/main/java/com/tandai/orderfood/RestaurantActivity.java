@@ -115,7 +115,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 //delete remember user and password
                 Paper.book().destroy();
                 dialogLogOut.cancel();
-                startActivity(new Intent(RestaurantActivity.this,WelcomActivity.class));
+                startActivity(new Intent(RestaurantActivity.this,WelcomeActivity.class));
             }
         });
     }
@@ -160,10 +160,11 @@ public class RestaurantActivity extends AppCompatActivity {
                 final String Address = address.getText().toString();
                 final String Phone = phone.getText().toString();
                 if(Name.isEmpty() || Address.isEmpty() || Phone.isEmpty()){
-                    Toast.makeText(RestaurantActivity.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RestaurantActivity.this, "\n" +
+                            "Please complete all information", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(RestaurantActivity.this, "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RestaurantActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
                     dialog.cancel();
                     mDatabase.child("name").setValue(Name);
                     mDatabase.child("address").setValue(Address);

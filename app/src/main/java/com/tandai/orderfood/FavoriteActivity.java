@@ -67,7 +67,7 @@ public class FavoriteActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FavoriteActivity.this,KhachHangActivity.class));
+                startActivity(new Intent(FavoriteActivity.this, CustomersActivity.class));
             }
         });
 

@@ -52,14 +52,14 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 public class FoodDetailActivity extends AppCompatActivity implements RatingDialogListener {
-    User quanAn;
+    User quanAnn;
     CollapsingToolbarLayout collapsingToolbarLayout;
     String name,phone;
     String foodId = "";
     String RestaurentID = "";
     FloatingActionButton btnCart,btnRating,btnShare;
     ElegantNumberButton number;
-    ImageView hinh,fav;
+    ImageView picture,fav;
     TextView tenmon,giamon,mota,cacdanhgia;
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference database, databaseReference;
@@ -89,7 +89,7 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
     Target target = new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            //Create Phôt from Bitmap
+            //Create photo  from Bitmap
             SharePhoto photo = new SharePhoto.Builder()
                     .setBitmap(bitmap)
                     .build();
@@ -134,7 +134,7 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
         btnCart = (FloatingActionButton)findViewById(R.id.btnCart);
         btnShare = (FloatingActionButton) findViewById(R.id.btnShare);
         number = (ElegantNumberButton) findViewById(R.id.number_button);
-        hinh = (ImageView) findViewById(R.id.image_food);
+        picture = (ImageView) findViewById(R.id.image_food);
         tenmon= (TextView) findViewById(R.id.food_name);
         giamon= (TextView) findViewById(R.id.food_price);
         mota =(TextView) findViewById(R.id.food_description);
@@ -146,19 +146,19 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         btnRating = (FloatingActionButton) findViewById(R.id.btnRating);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        //Nhận THông tin Food từ Intent gửi đến
+        //Receive Food Information from Intent sent to
         Intent intent = getIntent();
         if(intent != null){
             foodId       = intent.getStringExtra("FoodId");
             RestaurentID = intent.getStringExtra("RestaurentID");
         }
-        if(!foodId.isEmpty() && foodId !=null && !RestaurentID.isEmpty() && RestaurentID!= null){
+        if(!foodId.isEmpty() && foodId !=null && !RestaurentID.isEmpty() && RestaurentID != null){
             getDetailFood(RestaurentID,foodId);
             getRatingFood(foodId);
-            initRecyclerView(foodId,RestaurentID);
+            initRecyclerView(foodId, RestaurentID);
         }
 
-        // share food to facbook
+        // share food to facebook
 
 
         btnShare.setOnClickListener(new View.OnClickListener() {
@@ -185,10 +185,10 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
                     Cart cart = new Cart(food.getTenMon(),food.getTenQuan(),food.getIdQuan(),food.getLinkAnh(),food.getGiaMon(),quantity,price);
                     //them vao database
                     mDatabase.child("Carts").child(userID).child(food.getTenMon()).setValue(cart);
-                    Toast.makeText(FoodDetailActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoodDetailActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
                 }
                 else
-                    Toast.makeText(FoodDetailActivity.this, "Món ăn đã hết", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoodDetailActivity.this, "The dish is out", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -227,19 +227,19 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
                     public void onClick(View v) {
                         if (dataSnapshot.getValue() == null){
                             fav.setImageResource(R.drawable.ic_favorite_black_24dp);
-                            Toast.makeText(FoodDetailActivity.this, foodId+" đã thêm vào món yêu thích", Toast.LENGTH_SHORT).show();
-                            favorite = new Favorite(foodId,userID,RestaurentID,price,image,1);
+                            Toast.makeText(FoodDetailActivity.this, foodId+"Add to favorites", Toast.LENGTH_SHORT).show();
+                            favorite = new Favorite(foodId,userID, RestaurentID,price,image,1);
                         }
                         else{
                             favorite = dataSnapshot.getValue(Favorite.class);
                             if(favorite.getCheck()==1){
                                 fav.setImageResource(R.drawable.ic_favorite_border_black_24dp);
-                                Toast.makeText(FoodDetailActivity.this, foodId+" đã xóa khỏi món yêu thích", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(FoodDetailActivity.this, foodId+"removed from favorites", Toast.LENGTH_SHORT).show();
                                 favorite.setCheck(0);
                             }
                             else{
                                 fav.setImageResource(R.drawable.ic_favorite_black_24dp);
-                                Toast.makeText(FoodDetailActivity.this, foodId+" đã thêm vào món yêu thích", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(FoodDetailActivity.this, foodId+" added to favorites", Toast.LENGTH_SHORT).show();
                                 favorite.setCheck(1);
                             }
                         }
@@ -286,15 +286,15 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
 
     private void showRatingDialog() {
         new AppRatingDialog.Builder()
-                .setPositiveButtonText("Gửi")
-                .setNegativeButtonText("Hủy")
-                .setNoteDescriptions(Arrays.asList("Very Bad","Not Good","Quite OK","Very Good","Exellent"))
+                .setPositiveButtonText("Send")
+                .setNegativeButtonText("Cancel")
+                .setNoteDescriptions(Arrays.asList("Very Bad","Not Good","Quite OK","Very Good","Excellent"))
                 .setDefaultRating(1)
-                .setTitle("Đánh giá món ăn")
-                .setDescription("Chọn mức độ hài lòng của bạn về món ăn này")
+                .setTitle("Food review")
+                .setDescription("Choose how satisfied you are with this dish")
                 .setTitleTextColor(R.color.colorPrimary)
                 .setDescriptionTextColor(R.color.colorPrimary)
-                .setHint("Viết cảm nhận của bạn tại đây...")
+                .setHint("Write your review here...")
                 .setHintTextColor(R.color.colorAccent)
                 .setCommentTextColor(R.color.colorWhite)
                 .setCommentBackgroundColor(R.color.colorPrimary_Dark)
@@ -305,41 +305,41 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
     }
 
 
-    //Hiển thông thông tin chi tiết món
+    //Show detailed dish information
     private void getDetailFood(final String restaurentID, final String foodId) {
-        // get data quan
+        // get data name
         mDatabase.child("Users").child(restaurentID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                quanAn = dataSnapshot.getValue(User.class);
-                phone = quanAn.getPhone();
+                quanAnn = dataSnapshot.getValue(User.class);
+                phone = quanAnn.getPhone();
                 //set data
-                mDatabase.child("QuanAn").child(restaurentID).child(foodId).addValueEventListener(new ValueEventListener() {
+                mDatabase.child("QuanAnn").child(restaurentID).child(foodId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        // đối tượng food lấy dữ liệu từ database
+                        // food object gets data from database
                         food = dataSnapshot.getValue(MonAn.class);
-                        //THiết lập ảnh
-                        Picasso.with(getBaseContext()).load(food.getLinkAnh()).into(hinh);
+                        //Photo settings
+                        Picasso.with(getBaseContext()).load(food.getLinkAnh()).into(picture);
                         collapsingToolbarLayout.setTitle(food.getTenMon());
 
                         price = food.getGiaMon();
                         image = food.getLinkAnh();
-                        giamon.setText(price +" đ");
+                        giamon.setText(price +" ");
                         number.setOnClickListener(new ElegantNumberButton.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 quantity = Long.parseLong(number.getNumber());
                                 price = quantity * food.getGiaMon();
-                                giamon.setText(price+" đ");
+                                giamon.setText(price+" ");
                             }
                         });
 
                         tenmon.setText(food.getTenMon());
                         if (food.getTinhTrang() == 1) {
-                            mota.setText("Tình trạng món ăn: Còn\nQuán "+food.getTenQuan()+"\nĐịa chỉ: "+quanAn.getAddress()+"\nLiên hệ: "+quanAn.getPhone());
+                            mota.setText("Food Condition: still\nshop"+food.getTenQuan()+"\n:Address "+ quanAnn.getAddress()+"\n:Contact "+ quanAnn.getPhone());
                         } else {
-                            mota.setText("Tình trạng món ăn: Hết\nQuán "+food.getTenQuan()+"\nĐịa chỉ: "+quanAn.getAddress()+"\nLiên hệ: "+quanAn.getPhone());
+                            mota.setText("Food Condition: Over\nShop"+food.getTenQuan()+"\nAddress: "+ quanAnn.getAddress()+"\nContact: "+ quanAnn.getPhone());
                         }
                     }
 
@@ -374,7 +374,7 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 name = dataSnapshot.getValue(String.class);
                 //get Rating and upload firebase
-                final Rating rating = new Rating(name,RestaurentID,foodId,String.valueOf(value),comment,dateTime);
+                final Rating rating = new Rating(name, RestaurentID,foodId,String.valueOf(value),comment,dateTime);
                 ratingTbl.child("Rating").child(foodId).child(userID).setValue(rating);
             }
 
@@ -384,7 +384,7 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
             }
         });
 
-        Toast.makeText(FoodDetailActivity.this, "Cảm ơn bạn đã đánh giá món ăn này", Toast.LENGTH_SHORT).show();
+        Toast.makeText(FoodDetailActivity.this, "Thank you for rating this dish", Toast.LENGTH_SHORT).show();
 
         finish();
         startActivity(getIntent());
@@ -393,7 +393,7 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
 
 
 
-    private void initRecyclerView(final String foodID,final String RestaurentID){
+    private void initRecyclerView(final String foodID,final String RestaurantID){
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewRating);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
@@ -410,15 +410,15 @@ public class FoodDetailActivity extends AppCompatActivity implements RatingDialo
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     Rating rating = ds.getValue(Rating.class);
-                    if(rating.getFoodID().equals(foodID) && rating.getRestaurentID().equals(RestaurentID))
+                    if(rating.getFoodID().equals(foodID) && rating.getRestaurantID().equals(RestaurantID))
                         arrRating.add(rating);
                 }
                 if(arrRating.size() == 0){
-                    cacdanhgia.setText("Món ăn chưa có đánh giá");
+                    cacdanhgia.setText("Food has no reviews yet");
                     cacdanhgia.setTextColor(getResources().getColor(R.color.colorGray));
                 }
                 else{
-                    cacdanhgia.setText("Các đánh giá về món ăn");
+                    cacdanhgia.setText("Food reviews");
                     cacdanhgia.setTextColor(Color.parseColor("#1A554E"));
                 }
                 //sort dateTime

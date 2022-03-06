@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:clickable="true"
-        app:mt_hint="Nhập tên món ăn"
+        app:mt_hint="Enter dish name"
         app:mt_speechMode="false">
 
     </com.mancj.materialsearchbar.MaterialSearchBar>

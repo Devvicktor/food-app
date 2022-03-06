@@ -40,7 +40,7 @@ public class ForgotPassActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String Email = email.getText().toString().trim();
                 if(Email.isEmpty()) {
-                    Toast.makeText(ForgotPassActivity.this, "Vui lòng điền Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgotPassActivity.this, "Please fill in your Email", Toast.LENGTH_SHORT).show();
                 }
                 else {
 
@@ -49,10 +49,10 @@ public class ForgotPassActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(ForgotPassActivity.this, "Mở Email để đổi mật khẩu mới", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ForgotPassActivity.this, "Open Email to change new password", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(ForgotPassActivity.this, LoginActivity.class));
                                     } else {
-                                        Toast.makeText(ForgotPassActivity.this, "Email không tồn tại", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ForgotPassActivity.this, "Email does not exist", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

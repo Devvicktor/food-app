@@ -1,4 +1,4 @@
-<h1> Order Food App </h1>
+<!-- <h1> Order Food App </h1>
 <br>
 <h3>Authentication</h3>
 <ul>
@@ -68,7 +68,7 @@
 </p>
 <p align="center">
   <img src="/screenshot/profile.PNG" alt="" width="280" height="480" >
-</p>
+</p> -->
 
 
 

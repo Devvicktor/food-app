@@ -56,10 +56,10 @@ public class SearchFoodActivity extends AppCompatActivity {
                 .build());
 
         setContentView(R.layout.layout_search_food);
-        //Tìm kiếm
+        //search
         materialSearchBar = (MaterialSearchBar)findViewById(R.id.searchBar);
-        materialSearchBar.setHint("Nhập tên món ăn");
-        // end tiem kiem
+        materialSearchBar.setHint("Enter food name");
+        // end time
         lvFood  =   (ListView) findViewById(R.id.listview_food);
         arrFood = new ArrayList<>();
         adapter = new FoodAdapter1(this, R.layout.item_food, arrFood);
@@ -79,9 +79,9 @@ public class SearchFoodActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                //Khi người dùng nhập vào SearchBar danh sách gợi ý sẽ thay đổi theo.
+                //When the user enters the SearchBar the list of suggestions will change accordingly.
                 ArrayList<String> suggest = new ArrayList<String>();
-                for(String search:suggestList){ // Vòng lặp suggetList
+                for(String search:suggestList){ // Loop suggetList
                     if(search.toLowerCase().contains(materialSearchBar.getText().toLowerCase()))
                         suggest.add(search);
                 }
@@ -97,20 +97,20 @@ public class SearchFoodActivity extends AppCompatActivity {
         materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
             @Override
             public void onSearchStateChanged(boolean enabled) {
-                //Khi Search Bar bị đóng
-                //Khôi phục adapter ban đầu
+                //When the Search Bar is closed
+                //Restore the original adapter
                 if(!enabled) {
                     //lvFood.setAdapter(adapter);
                     lvFood.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                            //position là vi tri tren listview
+                            //position is value on listview
                             Food foodSearch = arrFood.get(position);
                             Intent foodDetail = new Intent(SearchFoodActivity.this,FoodDetailActivity.class);
-                            //gửi FoodId (ten của Food) và id quán đến activity FoodDetail
+                            //Send FoodId (Food's name) and restaurant id to the FoodDetail activity
                             foodDetail.putExtra("FoodId",foodSearch.getTenMon());
-                            foodDetail.putExtra("RestaurentID",foodSearch.getIDQuan());
-                            // mở activity  foodDetail
+                            foodDetail.putExtra("RestaurantID",foodSearch.getIDQuan());
+                            // open the activity foodDetail
                             startActivity(foodDetail);
                         }
                     });
@@ -122,8 +122,8 @@ public class SearchFoodActivity extends AppCompatActivity {
 
             @Override
             public void onSearchConfirmed(final CharSequence text) {
-                //Khi Search hoàn tất
-                //hiển thị kết quả của searchAdapter
+                //When Search is complete
+                //show results of searchAdapter
                 startSearch(text);
             }
 
@@ -165,13 +165,13 @@ public class SearchFoodActivity extends AppCompatActivity {
         lvFood.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //position là vi tri tren listview
+                //position is value on listview
                 Food foodSearch = arrFoodSearch.get(position);
                 Intent foodDetail = new Intent(SearchFoodActivity.this,FoodDetailActivity.class);
-                //gửi FoodId (ten của Food) và id quán đến activity FoodDetail
+                //send FoodId (Food's name) and restaurant id to the FoodDetail activity
                 foodDetail.putExtra("FoodId",foodSearch.getTenMon());
-                foodDetail.putExtra("RestaurentID",foodSearch.getIDQuan());
-                // mở activity  foodDetail
+                foodDetail.putExtra("RestaurantID",foodSearch.getIDQuan());
+                // open the activity foodDetail
                 startActivity(foodDetail);
             }
         });
@@ -199,13 +199,13 @@ public class SearchFoodActivity extends AppCompatActivity {
                 lvFood.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                        //position là vi tri tren listview
+                        //position is value on listview
                         Food food = arrFood.get(position);
                         Intent foodDetail = new Intent(SearchFoodActivity.this,FoodDetailActivity.class);
-                        //gửi FoodId (ten của Food) và id quán đến activity FoodDetail
+                        //send FoodId (Food's name) and restaurant id to the FoodDetail activity
                         foodDetail.putExtra("FoodId",food.getTenMon());
-                        foodDetail.putExtra("RestaurentID",food.getIDQuan());
-                        // mở activity  foodDetail
+                        foodDetail.putExtra("RestaurantID",food.getIDQuan());
+                        //open the activity foodDetail
                         startActivity(foodDetail);
                     }
                 });
@@ -234,7 +234,7 @@ public class SearchFoodActivity extends AppCompatActivity {
                 {
                     for(DataSnapshot ds1: ds.getChildren()) {
                         Food food = ds1.getValue(Food.class);
-                        suggestList.add(food.getTenMon()); //Thêm tên món ăn vào danh sách gợi ý
+                        suggestList.add(food.getTenMon()); //Add the name of the dish to the list of suggestions
                     }
 
                 }

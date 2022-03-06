@@ -39,7 +39,6 @@ import com.tandai.orderfood.Model.User;
 import com.tandai.orderfood.Notifications.APIService;
 import com.tandai.orderfood.Notifications.MyResponse;
 import com.tandai.orderfood.Notifications.Notification;
-import com.tandai.orderfood.Notifications.RetrofitClient;
 import com.tandai.orderfood.Notifications.Sender;
 import com.tandai.orderfood.Notifications.Token;
 
@@ -120,17 +119,17 @@ public class CartActivity extends AppCompatActivity {
                             // get address
                             final String diachigiaohang = diaChi.getText().toString().trim();
                             if (diachigiaohang.isEmpty())
-                                Toast.makeText(CartActivity.this, "Vui lòng nhập địa chỉ giao hàng", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CartActivity.this, "Please enter your shipping address", Toast.LENGTH_SHORT).show();
                             else {
                                 mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
                                 ValueEventListener eventListener = new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         uInfo = dataSnapshot.getValue(User.class);
-                                        // get sdt + ten khach hang
+                                        //
                                         sdt = uInfo.getPhone();
                                         tenKH = uInfo.getName();
-                                        // them vào mảng Order
+                                        // add to the Order array
                                         for (int i = 0; i < arrCart.size(); i++) {
                                             arrOrder.add(new Order(dateTime, diachigiaohang, sdt, userID,
                                                     tenKH, arrCart.get(i).getTenQuan(), arrCart.get(i).getIDQuan(),
@@ -171,11 +170,12 @@ public class CartActivity extends AppCompatActivity {
                                 mDatabase.addListenerForSingleValueEvent(eventListener1);
 
 
-                                // đóng dialog
+                                // close dialog
                                 dialogConfirm.dismiss();
-                                Toast.makeText(CartActivity.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CartActivity.this, "\n" +
+                                        "Order Success", Toast.LENGTH_SHORT).show();
 
-                                // xóa db Cart của user sau khi đặt hàng thành công
+                                // delete user's db Cart after successful order
                                 mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Carts").child(userID);
                                 ValueEventListener eventListener2 = new ValueEventListener() {
                                     @Override
@@ -191,7 +191,7 @@ public class CartActivity extends AppCompatActivity {
                                 mDatabase1.addListenerForSingleValueEvent(eventListener2);
 
 
-                                startActivity(new Intent(CartActivity.this, KhachHangActivity.class));
+                                startActivity(new Intent(CartActivity.this, CustomersActivity.class));
 
                             }
 
@@ -200,7 +200,7 @@ public class CartActivity extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(CartActivity.this, "Không có món ăn trong Giỏ hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartActivity.this, "There are no items in the Cart", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -282,11 +282,12 @@ public class CartActivity extends AppCompatActivity {
 
 
                         Snackbar snackbar = Snackbar
-                                .make(relativeLayout, "Đã xóa "+mRecentlyDeletedItem.getTenMon(), Snackbar.LENGTH_LONG)
-                                .setAction("Quay lại", new View.OnClickListener() {
+                                .make(relativeLayout, "Deleted"+mRecentlyDeletedItem.getTenMon(), Snackbar.LENGTH_LONG)
+                                .setAction("Come back", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Snackbar snackbar1 = Snackbar.make(relativeLayout, "Đã khôi phục "+mRecentlyDeletedItem.getTenMon(), Snackbar.LENGTH_LONG);
+                                        Snackbar snackbar1 = Snackbar.make(relativeLayout, "\n" +
+                                                "Restored"+mRecentlyDeletedItem.getTenMon(), Snackbar.LENGTH_LONG);
                                         arrCart.add(mRecentlyDeletedItemPosition,mRecentlyDeletedItem);
                                         cartAdapter.notifyDataSetChanged();
                                         tongTien = tongTien + mRecentlyDeletedItem.getTongTien();
@@ -360,7 +361,7 @@ public class CartActivity extends AppCompatActivity {
                     Token serverToken = ds.getValue(Token.class);
                     for(int i=0;i<arrId.size();i++){
                         if(arrId.get(i).equals(ds.getKey())) {
-                            Notification notification = new Notification(nameCustomer + " vừa đặt món ăn từ quán của bạn","Có đơn hàng mới");
+                            Notification notification = new Notification(nameCustomer + "Just ordered food from your restaurant","Got a new order");
                             Sender content = new Sender(serverToken.getToken(), notification);
 
                             mService.sendNotification(content).enqueue(new Callback<MyResponse>() {
@@ -368,9 +369,9 @@ public class CartActivity extends AppCompatActivity {
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if (response.code() == 200) {
                                         if (response.body().success == 1) {
-                                            //Toast.makeText(CartActivity.this, "thành công", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(CartActivity.this, "successful", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            //Toast.makeText(CartActivity.this, "Thất bại", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(CartActivity.this, "Failure", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }

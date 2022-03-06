@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quên mật khẩu"
+            android:text="Forgot Password"
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -53,7 +53,7 @@
         android:layout_below="@id/EmailForgotPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lấy lại mật khẩu"
+        android:text="Retrieve Password"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:textAllCaps="false"/>

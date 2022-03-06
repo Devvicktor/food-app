@@ -27,7 +27,7 @@
             android:id="@+id/btnThoatXemdonhangQuanan"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Thoát"
+            android:text="Exit"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
 

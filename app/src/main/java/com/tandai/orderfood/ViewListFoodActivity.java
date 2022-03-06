@@ -53,7 +53,7 @@ public class ViewListFoodActivity extends AppCompatActivity {
         setContentView(R.layout.layout_view_food);
         AnhXa();
         initRecyclerView();
-        tenquan.setText("Quán "+ user.getDisplayName());
+        tenquan.setText("Shop"+ user.getDisplayName());
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +78,7 @@ public class ViewListFoodActivity extends AppCompatActivity {
         recyclerViewFood.setLayoutManager(layoutManager);
         recyclerViewFood.setItemAnimator(new DefaultItemAnimator());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("QuanAn").child(userID);
+        mDatabase = FirebaseDatabase.getInstance().getReference("restaurant").child(userID);
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -111,19 +111,19 @@ public class ViewListFoodActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case 121:
                 new AlertDialog.Builder(this)
-                        .setTitle("Xóa món ăn")
-                        .setMessage("Bạn muốn xóa "+name+" ?")
+                        .setTitle("Delete dishes")
+                        .setMessage("You want to to delete"+name+" ?")
                         // Specifying a listener allows you to take an action before dismissing the dialog.
                         // The dialog is automatically dismissed when a dialog button is clicked.
-                        .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Continue with delete operation
-                                displayMessage("Đã xóa thành công " + name);
+                                displayMessage("Delete successfully" + name);
                                 viewFoodAdapter.removeItem(pos,name);
                             }
                         })
                         // A null listener allows the button to dismiss the dialog and take no further action.
-                        .setNegativeButton("Hủy", null)
+                        .setNegativeButton("Cancel", null)
                         .setIcon(R.drawable.ic_delete_red_24dp)
                         .show();
                 return true;
@@ -134,7 +134,7 @@ public class ViewListFoodActivity extends AppCompatActivity {
                 Banner banner = new Banner(name,userID,arrFood.get(pos).getLinkAnh());
                 mDatabase = FirebaseDatabase.getInstance().getReference("Banner").child(userID);
                 mDatabase.setValue(banner);
-                displayMessage("Đã đặt "+ name+" làm Hot Food");
+                displayMessage("Booked"+ name+"make hot food");
                 return true;
 
                 default:
@@ -196,7 +196,7 @@ public class ViewListFoodActivity extends AppCompatActivity {
                 final String Name = nameFood.getText().toString();
                 final String Price = priceFood.getText().toString();
                 if(Name.isEmpty() || Price.isEmpty() ){
-                    Toast.makeText(ViewListFoodActivity.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewListFoodActivity.this, "Please complete all information", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     dialog.cancel();

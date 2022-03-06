@@ -51,7 +51,7 @@ public class OrderActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OrderActivity.this,KhachHangActivity.class));
+                startActivity(new Intent(OrderActivity.this, CustomersActivity.class));
             }
         });
 
@@ -78,17 +78,18 @@ public class OrderActivity extends AppCompatActivity {
                 //get date-time
                 Calendar c = Calendar.getInstance();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy   hh:mm:ss aa");
-                final String dateCurent = dateFormat.format(c.getTime());
+                final String dateCurrent = dateFormat.format(c.getTime());
 
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     for(DataSnapshot ds1: ds.getChildren()){
                         if(ds1.getKey().equals(userID)){
                             for (DataSnapshot ds2:ds1.getChildren()){
                                 if(ds2.getValue() !=null) {
+                                    
                                     Order order = ds2.getValue(Order.class);
                                     int dayOrder = getDayTime(order.getDateTime());
-                                    int dayCurent = getDayTime(dateCurent);
-                                    if( dayOrder == dayCurent){
+                                    int dayCurrent = getDayTime(dateCurrent);
+                                    if( dayOrder == dayCurrent){
                                         arrOrder.add(order);
                                     }
                                 }

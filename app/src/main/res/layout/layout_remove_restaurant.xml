@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Xóa tài khoản Quán"
+        android:text="Delete Restaurant Account"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
         android:textColor="@color/colorWhite"
@@ -41,7 +41,7 @@
             android:layout_margin="@dimen/size15dp"
             android:drawableLeft="@drawable/ic_email_black_36dp"
             android:drawablePadding="@dimen/size10dp"
-            android:hint="Email cần xóa"
+            android:hint="Email to Delete"
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColor="@color/colorWhite"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/duongvien_xanh"
-                android:text="Xóa"
+                android:text="Delete"
                 android:textAllCaps="false"
                 android:textSize="20sp" />
 

@@ -33,7 +33,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Món ăn yêu thích"
+            android:text="Favorite Food"
             android:textSize="22sp"
             android:textColor="@color/colorWhite"/>
 

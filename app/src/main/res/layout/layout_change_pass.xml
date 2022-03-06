@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/size10dp"
-        android:text="Thay đổi mật khẩu"
+        android:text="Change password"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
 
@@ -29,14 +29,14 @@
         android:layout_height="wrap_content"
         android:textColor="#FF9100"
         android:paddingLeft="10dp"
-        android:text="Lưu ý:"
+        android:text="Note:"
         android:layout_marginTop="60dp"/>
     <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textColor="#424242"
     android:paddingLeft="30dp"
-    android:text="Mật khẩu mới nên bao gồm chữ và số"
+    android:text="New password should include letters and numbers"
     android:layout_marginTop="80dp"/>
     <TextView
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:hint="Mật khẩu cũ"
+        android:hint="Old password"
         android:text=""
         android:layout_marginLeft="@dimen/size20dp"
         android:layout_marginRight="@dimen/size15dp"
@@ -69,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
-        android:hint="Mật khẩu mới"
+        android:hint="A new password"
         android:text=""
         android:layout_marginLeft="@dimen/size20dp"
         android:layout_marginRight="@dimen/size15dp"
@@ -87,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="290dp"
-        android:hint="Xác nhận mật khẩu mới"
+        android:hint="Confirm new password"
         android:text=""
         android:layout_marginLeft="@dimen/size20dp"
         android:layout_marginRight="@dimen/size15dp"
@@ -117,7 +117,7 @@
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:background="#43A047"
-            android:text="Đổi"
+            android:text="change"
             android:textSize="15sp"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite"/>
@@ -129,7 +129,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="@dimen/size40dp"
             android:background="#FF9100"
-            android:text="Đóng"
+            android:text="Close"
             android:textAllCaps="false"
             android:textSize="15sp"
             android:textColor="@color/colorWhite"/>

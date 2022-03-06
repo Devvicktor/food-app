@@ -114,7 +114,7 @@ public class ChangePassActivity extends AppCompatActivity {
 
                 else if(type.equals("admin")) startActivity(new Intent(ChangePassActivity.this,AdminActivity.class));
 
-                else startActivity(new Intent(ChangePassActivity.this, KhachHangActivity.class));
+                else startActivity(new Intent(ChangePassActivity.this, CustomersActivity.class));
 
             }
         });

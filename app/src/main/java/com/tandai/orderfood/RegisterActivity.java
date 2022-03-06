@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.layout_register);
         mService = Common.getFCMService();
         process = new ProgressDialog(RegisterActivity.this);
-        process.setMessage("Vui lòng đợi");
+        process.setMessage("Please wait...");
         AnhXa();
         mAuthencation = FirebaseAuth.getInstance();
         btnDangKy.setOnClickListener(new View.OnClickListener() {
@@ -75,16 +75,17 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void DangKy() {
-        String Email = email.getText().toString().trim(); //trim() bỏ khoảng trống ở đầu và cuối chuỗi
+        String Email = email.getText().toString().trim(); //trim() remove spaces at the beginning and end of the string
         String Pass = pass.getText().toString().trim();
         final String Name = name.getText().toString().trim();
         String Phone = phone.getText().toString().trim();
         String Address = address.getText().toString().trim();
-        final User KhachHang    = new User(Email,Pass,Name,Phone,Address,"customer");
+        final User customer    = new User(Email,Pass,Name,Phone,Address,"customer");
 
         if (Email.isEmpty() || Pass.isEmpty() || Name.isEmpty() || Phone.isEmpty() || Address.isEmpty()) {
             process.dismiss();
-            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin. ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "\n" +
+                    "Please complete all information.", Toast.LENGTH_SHORT).show();
         }
         else {
             mAuthencation.createUserWithEmailAndPassword(Email, Pass)
@@ -101,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             process.dismiss();
-                                            Toast.makeText(RegisterActivity.this, "Đăng ký thành công. Vui lòng xác thực Email", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "Sign Up Success. Please verify your Email", Toast.LENGTH_SHORT).show();
 
                                             // send notification to Admin
                                             sendNotification(Name);
@@ -119,9 +120,9 @@ public class RegisterActivity extends AppCompatActivity {
                                                     });
                                             //push data len realtime database
                                             String userID= user.getUid();
-                                            mData.child("Users").child(userID).setValue(KhachHang);
-                                            //chuyen ve man hinh chinh
-                                            startActivity(new Intent(RegisterActivity.this,WelcomActivity.class));
+                                            mData.child("Users").child(userID).setValue(customer);
+                                            //switch to main screen
+                                            startActivity(new Intent(RegisterActivity.this,WelcomeActivity.class));
 
                                         }
                                         else{
@@ -135,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     else {
                         process.dismiss();
-                        Toast.makeText(RegisterActivity.this, "Tài khoản đã tồn tại.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Account already exists.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -152,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
                     Token token = ds.getValue(Token.class);
-                    Notification notification = new Notification(name+" vừa tạo tài khoản trên ứng dụng", "Có tài khoản mới");
+                    Notification notification = new Notification(name+"just created an account on the app", "Got a new account");
                     Sender content = new Sender(token.getToken(), notification);
 
                     mService.sendNotification(content).enqueue(new Callback<MyResponse>() {

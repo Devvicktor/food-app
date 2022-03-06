@@ -93,7 +93,7 @@ public class AdminActivity extends AppCompatActivity {
                 //delete remember user and password
                 Paper.book().destroy();
                 dialogLogOut.cancel();
-                startActivity(new Intent(AdminActivity.this,WelcomActivity.class));
+                startActivity(new Intent(AdminActivity.this,WelcomeActivity.class));
             }
         });
     }

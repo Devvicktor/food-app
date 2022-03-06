@@ -3,7 +3,7 @@ package com.tandai.orderfood.Model;
 public class Favorite {
     private String foodID;
     private String userID;
-    private String restaurentID;
+    private String restaurantID;
     private long price;
     private String image;
     private int check;
@@ -11,10 +11,10 @@ public class Favorite {
     public Favorite() {
     }
 
-    public Favorite(String foodID, String userID, String restaurentID, long price, String image, int check) {
+    public Favorite(String foodID, String userID, String restaurantID, long price, String image, int check) {
         this.foodID = foodID;
         this.userID = userID;
-        this.restaurentID = restaurentID;
+        this.restaurantID = restaurantID;
         this.price = price;
         this.image = image;
         this.check = check;
@@ -37,12 +37,12 @@ public class Favorite {
         this.image = image;
     }
 
-    public String getRestaurentID() {
-        return restaurentID;
+    public String getRestaurantID() {
+        return restaurantID;
     }
 
-    public void setRestaurentID(String restaurentID) {
-        this.restaurentID = restaurentID;
+    public void setRestaurantID(String restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     public String getFoodID() {

@@ -54,14 +54,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Favorite favorite = arrFavorite.get(i);
         viewHolder.name.setText(favorite.getFoodID());
-        viewHolder.price.setText(String.valueOf(favorite.getPrice())+"Đ");
+        viewHolder.price.setText(String.valueOf(favorite.getPrice())+"D");
         Picasso.with(context).load(favorite.getImage()).into(viewHolder.image);
 
         viewHolder.cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("QuanAn").child(favorite.getRestaurentID()).child(favorite.getFoodID());
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Restaurant").child(favorite.getRestaurantID()).child(favorite.getFoodID());
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -71,10 +71,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                                 Cart cart = new Cart(food.getTenMon(),food.getTenQuan(),food.getIdQuan(),food.getLinkAnh(),food.getGiaMon(),1,food.getGiaMon());
                                 //them vao database
                                 mDatabase.child("Carts").child(userID).child(food.getTenMon()).setValue(cart);
-                                Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Added to cart", Toast.LENGTH_SHORT).show();
                             }
                             else
-                                Toast.makeText(context, "Món ăn đã hết", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "The dish is out", Toast.LENGTH_SHORT).show();
                         }
                     }
 

@@ -61,10 +61,10 @@ public class AddRestaurantActivity extends AppCompatActivity {
         final String Name = name.getText().toString().trim();
         String Phone = phone.getText().toString().trim();
         String Address = address.getText().toString().trim();
-        final User QuanAn    = new User(Email,Pass,Name,Phone,Address,"restaurent");
+        final User QuanAn    = new User(Email,Pass,Name,Phone,Address,"restaurant");
         if (Email.isEmpty() || Pass.isEmpty() || Name.isEmpty() || Phone.isEmpty() || Address.isEmpty()) {
             waiting.dismiss();
-            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin. ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please complete all information.", Toast.LENGTH_SHORT).show();
         }
         else {
             mAuthencation.createUserWithEmailAndPassword(Email, Pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -72,7 +72,8 @@ public class AddRestaurantActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         waiting.dismiss();
-                        Toast.makeText(AddRestaurantActivity.this, "Thêm tài khoản Quán ăn thành công.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddRestaurantActivity.this, "\n" +
+                                "Add restaurant account successfully.", Toast.LENGTH_SHORT).show();
                         user    =   mAuthencation.getCurrentUser();
                         //set Name cho user
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -88,11 +89,11 @@ public class AddRestaurantActivity extends AppCompatActivity {
                         //push data len realtime database
                         String userID   =   user.getUid();
                         mData.child("Users").child(userID).setValue(QuanAn);
-                        //chuyen ve man hinh Admin
+                        //switch to admin screen
                         startActivity(new Intent(AddRestaurantActivity.this,AdminActivity.class));
                     } else {
                         waiting.dismiss();
-                        Toast.makeText(AddRestaurantActivity.this, "Tài khoản đã tồn tại.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddRestaurantActivity.this, "Account already exists.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

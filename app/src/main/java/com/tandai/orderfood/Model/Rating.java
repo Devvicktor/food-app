@@ -2,7 +2,7 @@ package com.tandai.orderfood.Model;
 
 public class Rating {
     private String name;
-    private String restaurentID;
+    private String restaurantID;
     private String foodID;
     private String rateValue;
     private String comment;
@@ -11,9 +11,9 @@ public class Rating {
     public Rating() {
     }
 
-    public Rating(String name,String restaurentID, String foodID, String rateValue, String comment,String dateTime) {
+    public Rating(String name, String restaurantID, String foodID, String rateValue, String comment, String dateTime) {
         this.name = name;
-        this.restaurentID = restaurentID;
+        this.restaurantID = restaurantID;
         this.foodID = foodID;
         this.rateValue = rateValue;
         this.comment = comment;
@@ -28,12 +28,12 @@ public class Rating {
         this.name = name;
     }
 
-    public String getRestaurentID() {
-        return restaurentID;
+    public String getRestaurantID() {
+        return restaurantID;
     }
 
-    public void setRestaurentID(String restaurentID) {
-        this.restaurentID = restaurentID;
+    public void setRestaurantID(String restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     public String getFoodID() {

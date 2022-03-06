@@ -30,7 +30,7 @@
         <activity android:name=".CartActivity" />
         <activity android:name=".FoodDetailActivity" />
         <activity
-            android:name=".KhachHangActivity"
+            android:name=".CustomersActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".InfoPersonActivity" />
@@ -44,7 +44,7 @@
         <activity android:name=".RestaurantActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".WelcomActivity">
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

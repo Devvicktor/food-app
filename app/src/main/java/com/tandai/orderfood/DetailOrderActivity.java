@@ -67,7 +67,7 @@ public class DetailOrderActivity extends AppCompatActivity {
         AnhXa();
         mService = Common.getFCMService();
 
-        //Nhận THông tin Order từ Intent gửi đến
+        //Receive Order Information from Intent sent to
         Intent intent = getIntent();
         if (intent != null) {
             foodID = intent.getStringExtra("FoodID");
@@ -84,26 +84,26 @@ public class DetailOrderActivity extends AppCompatActivity {
                 if( dagiao.isChecked() || danggiao.isChecked() || hethang.isChecked()){
                     String status="";
                     if (dagiao.isChecked()) {
-                        status = "đã giao";
+                        status = "delivered";
                         mDatabase.child("Orders").child(userID).child(CustomerID).child(foodID).child("check").setValue(1);
                     }
                     else if (danggiao.isChecked()) {
-                        status ="đang giao";
+                        status ="delivering";
                         mDatabase.child("Orders").child(userID).child(CustomerID).child(foodID).child("check").setValue(2);
                     }
                     else if (hethang.isChecked()) {
-                        status = "hết hàng";
+                        status = "Out of stock";
                         mDatabase.child("Orders").child(userID).child(CustomerID).child(foodID).child("check").setValue(3);
                     }
 
                     //send notification
                     sendNotification(order.getTenMon(),order.getTenkhachhang(),status,order.getUserID());
 
-                    Toast.makeText(DetailOrderActivity.this, "Đã xác nhận đơn hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailOrderActivity.this, "Order confirmed", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(DetailOrderActivity.this, RestaurantActivity.class));
                 }
                 else {
-                    Toast.makeText(DetailOrderActivity.this, "Vui lòng chọn tình trạng giao hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailOrderActivity.this, "Please select delivery status", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -134,21 +134,21 @@ public class DetailOrderActivity extends AppCompatActivity {
         mDatabase.child("Orders").child(userID).child(CustomerID).child(foodID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-                // đối tượng order lấy dữ liệu từ database
+                // order object gets data from database
                 if(dataSnapshot.getValue() != null) {
                     order = dataSnapshot.getValue(Order.class);
-                    //THiết lập ảnh
+                    //Photo settings
                     Picasso.with(getBaseContext()).load(order.getLinkAnh()).into(hinh);
                     quantity = order.getSoluong();
                     gia1mon = order.getGiaMon();
-                    gia.setText(gia1mon + "đ");
+                    gia.setText(gia1mon + "D");
                     tenmon.setText(order.getTenMon());
-                    tenKh.setText("Tên: " + order.getTenkhachhang());
-                    sdt.setText("Sđt: " + order.getSdtKhachHang());
-                    diachi.setText("Địa chỉ giao hàng: " + order.getDiachigiaohang());
-                    ngaydathang.setText("Ngày đặt hàng: " + order.getDateTime());
-                    soluong.setText("Số lượng: " + order.getSoluong());
-                    tongtien.setText("Tổng tiền: " + gia1mon * quantity + "đ");
+                    tenKh.setText("Name: " + order.getTenkhachhang());
+                    sdt.setText("Phone Number: " + order.getSdtKhachHang());
+                    diachi.setText("Delivery address: " + order.getDiachigiaohang());
+                    ngaydathang.setText("Order date: " + order.getDateTime());
+                    soluong.setText("Amount: " + order.getSoluong());
+                    tongtien.setText("Total money: " + gia1mon * quantity + "đ");
                 }
 
             }

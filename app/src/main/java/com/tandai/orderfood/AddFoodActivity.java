@@ -52,7 +52,7 @@ public class AddFoodActivity extends AppCompatActivity {
         setContentView(R.layout.layout_add_food);
         final StorageReference storageRef = storage.getReferenceFromUrl("gs://databaseorderfood.appspot.com");
         AnhXa();
-        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Vui lòng đợi").setCancelable(false).build();
+        waiting =  new SpotsDialog.Builder().setContext(this).setMessage("Please wait..").setCancelable(false).build();
 
         folder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,8 @@ public class AddFoodActivity extends AppCompatActivity {
                 final long gia    =   Long.parseLong(stringGia);
                 if(ten.isEmpty()|| stringGia.isEmpty()){
                     waiting.dismiss();
-                    Toast.makeText(AddFoodActivity.this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddFoodActivity.this, "\n" +
+                            "Please enter full information ", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Calendar calendar = Calendar.getInstance();
@@ -117,11 +118,12 @@ public class AddFoodActivity extends AppCompatActivity {
                                         MonAn Mon= new MonAn(user.getDisplayName(),IDQuan,ten,link,gia,1);
                                         DatabaseReference refData = FirebaseDatabase.getInstance().getReference();
                                         refData.child("QuanAn").child(IDQuan).child(ten).setValue(Mon);
-                                        Toast.makeText(AddFoodActivity.this, "Thêm món ăn thành công", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddFoodActivity.this, "\n" +
+                                                "More successful dishes", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(AddFoodActivity.this, RestaurantActivity.class));
 
                                     } else {
-                                        Toast.makeText(AddFoodActivity.this, "Thêm không thành công", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddFoodActivity.this, "Add Failed", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
